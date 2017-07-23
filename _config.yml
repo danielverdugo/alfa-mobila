@@ -1,0 +1,8 @@
+domain: alfa.verdugo.ru
+url: http://alfa.verdugo.ru
+
+encoding: "utf-8"
+
+compress_html:
+  clippings: all
+  comments: all
