@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="jquery.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="iphone-width">
+  <menu class="grid">
+    <div class="col-1-2"><img src="i/logoAndMenu.svg" width="80"></div>
+    <div class="col-1-2 align-right"><a href=""><img src="i/icon-person.svg" width="16"><span>Константин</span></a></div>
+  </menu>
+  <main>
+    <h1>Оплата мобильного телефона</h1>
+    <div class="inputField telField">
+      <input type="tel" id="tel" class="masked" placeholder="000 000-00-00" pattern="\d{3} \d{3}\-\d{2}\-\d{2}" maxlength="16">
+      <label for="tel">Номер телефона</label>
+    </div>
+
+    <div class="dropdownWrap hidden" id="operator">
+    <div class="dropdown" onclick="dropMenu('#operator-menu')">
+      <div class="title"><img src="i/logoYota.svg" height="16">Йота (мобильная связь)</div>
+      <div class="lable">Оператор</div>
+      <img src="i/drop.svg" class="ctl">
+    </div>
+    <style>
+      #operator .title img {margin-right:10px}
+    </style>
+    <ul id="operator-menu" class="dropdownSlider">
+      <li>
+        <div class="title"><img src="i/logoBeeline.svg" height="16">Билайн</div>
+      </li>
+      <li>
+        <div class="title"><img src="i/logoMTS.svg" height="16">МТС</div>
+      </li>
+      <li>
+        <div class="title"><img src="i/logoMegaFon.svg" height="16">МегаФон</div>
+      </li>
+      <li>
+        <div class="title"><img src="i/logoTele2.svg" height="8">Теле2</div>
+      </li>
+      <li>
+        <div class="title"><img src="i/logoYota.svg" height="16">Йота (мобильная связь)</div>
+      </li>
+    </ul>
+    </div>
+
+    <div class="inputField">
+      <input type="tel" id="sum" class="masked" placeholder="     " pattern="[1-9]\d{4}" maxlength="5" onkeydown="onlyNumbers(event)" autocomplete="off">
+      <label for="sum" class="emptyField">Сумма, от 10 до 50&thinsp;000&thinsp;₽</label>
+    </div>
+
+    <div class="dropdownWrap" style="position:relative">
+    <div class="dropdown" style="cursor:pointer" onclick="dropMenu('#acc-menu')">
+        <div class="title" id="acc-selected">Рублевый счет<span class="accnum">••4234</span></div>
+        <div class="lable">267&thinsp;700,90&thinsp;₽</div>
+        <img src="i/drop.svg" class="ctl">
+    </div>
+    <ul id="acc-menu" class="dropdownSlider">
+      <li>
+        <div class="title">Рублевый счет<span class="accnum">••4234</span></div>
+        <div class="lable">267&thinsp;700,90&thinsp;₽</div>
+      </li>
+      <li>
+        <div class="title">Кредитная карта<span class="accnum">••2334</span></div>
+        <div class="lable">63&thinsp;071,00&thinsp;₽</div>
+      </li>
+    </ul>
+    </div>
+
+    <a class="submit inactive" id="submit" href="#" onclick="submitForm()">Оплатить<span id="submit-sum"></span></a>
+
+    <div class="info">
+      Без комиссии. Зачисление моментально.
+    </div>
+    <footer>
+      Сделано в Альфа-Лаборатории<br>
+      © 2001—2017 <a href="">Альфа-Банк</a><br>
+      Генеральная лицензия ЦБ РФ №1326
+    </footer>
+  </main>
+</div>
+
+<div id="loadingScreen">
+  <div id="success">
+  <div class="chkmrk">
+    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+    <div id="success-acc-and-sum">
+      <div class="account">Рублевый счет<span class="accnum">••4234</span></div>
+      <div class="sum">&minus;500&thinsp;₽</div>
+    </div>
+    <div id="success-therest">
+      <div class="actions">
+        <div class="action">
+          <a href="#">
+            <img src="i/pdf.png" height="24">
+            <span>Квитанция</span>
+          </a>
+        </div>
+        <div class="action">
+          <a href="#">
+            <img src="i/star.png" height="24">
+            <span>В&nbsp;шаблоны</span>
+          </a>
+        </div>
+      </div>
+      <a class="close" onclick="closeOverlays()">Закрыть</a>
+    </div>
+  </div>
+  </div>
+  <div class="loader" id="loader">
+      <span class="dot dot_1"></span>
+      <span class="dot dot_2"></span>
+      <span class="dot dot_3"></span>
+      <span class="dot dot_4"></span><br>
+  </div>
+</div>
+<div id="darkness" class="darkness"></div>
+<div id="darkness2" class="darkness"></div>
+<script src="./mask.js" data-autoinit="true"></script>
+<script>
+window.onload = function(){
+  var dNum;
+  var formReady = false;
+
+  if (!(navigator.platform.indexOf("iPhone") != -1)) {$("#tel").focus()}
+
+  $("input").on("focus",function(){
+    var label=$("label[for='"+$(this).attr("id")+"']");
+    label.addClass("selected");
+    label.removeClass("emptyField");
+  });
+
+  $("input").on("blur",function(){
+    var label=$("label[for='"+$(this).attr("id")+"']");
+    label.removeClass("selected");
+    if (($(this).val() == "") & ($(this).attr("id") != "tel")) {label.addClass("emptyField")}
+  });
+
+  $("input").on("change paste keyup", function(){
+    setTimeout(function(){if (parseInt($("#sum").val()) < 10 || parseInt($("#sum").val()) > 50000 && $("#sum").val() != "") {
+      $("#sum").addClass("error")
+      $("label[for='sum']").addClass("error")
+    }
+    if ($("#tel").val().length < 13 & $("#tel").val().length > 0 & !$("#tel").is(":focus")) {
+      $("#tel").addClass("error-border")
+      $("label[for='tel']").addClass("error")
+    }},1000)
+  })
+
+  $("input").on("change paste keyup", function(){
+    $($(this)).removeClass("error")
+    $($(this)).removeClass("error-border")
+    $("label[for='"+$(this).attr("id")+"']").removeClass("error")
+    $("#sum").val($("#sum").val().replace(/^[0]/,''))
+
+    if ($("#tel").val().length >= 3) {
+      $("#operator").slideDown(200)
+    } else {
+      $("#operator").slideUp(200)
+    }
+
+    if ($("#tel").val().length == 13 & parseInt($("#sum").val()) >= 10 & parseInt($("#sum").val()) <= 50000)
+    {
+      $("#submit").removeClass("inactive")
+      if(parseInt($("#sum").val())>9999) {dNum=$("#sum").val().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g,"$1&thinsp;")}
+      else {dNum = $("#sum").val()}
+      $("#submit-sum").html("&nbsp;" + dNum + "&thinsp;₽")
+      formReady=true
+    }
+    else {
+      $("#submit").addClass("inactive")
+      $("#submit-sum").html("")
+      formReady=false
+    }
+  });
+
+  $('input').keypress(function (e) {
+  if (e.which == 13) {
+    submitForm();
+    return false;
+    }
+  });
+
+  window.setInterval(function() {
+  },1300)
+
+  $("#darkness").click(function() {closeOverlays()});
+
+  $(".dropdownSlider").children("li").click(function(){
+    swapValues($(this),".title");
+    if ($(this).children(".lable").length){swapValues($(this),".lable")}
+    closeOverlays()
+  })
+};
+  function swapValues(e,v){$(e).parent().parent().children(".dropdown").children(v).html($(e).children(v).html())}
+  function dropMenu(e){$(e).css('opacity', 0).slideDown(200).animate({opacity: 1},{queue:false, duration:200});$("#darkness").css('opacity', 0).css("z-index","1").show().animate({opacity: 0.5},{queue:false, duration:300})}
+  function closeOverlays(){$('.dropdownSlider').slideUp(200).animate({opacity: 0},{queue:false, duration:200});$("#darkness").animate({opacity: 0},{queue:false, duration:300}).css("display","none").css("z-index","-2");
+    $("#success").animate({opacity: 0},{queue:false, duration:300}).css("display","none");$("#loadingScreen").animate({opacity: 0},{queue:false, duration:300}).css("display","none").css("z-index","-2")}
+  function onlyNumbers(e){-1!==$.inArray(e.keyCode,[46,8,9,27,13,110,190])||65===e.keyCode&&(!0===e.ctrlKey||!0===e.metaKey)||e.keyCode>=35&&e.keyCode<=40||(e.shiftKey||e.keyCode<48||e.keyCode>57)&&(e.keyCode<96||e.keyCode>105)&&e.preventDefault()}
+
+  function submitForm(){
+    if (!$("#submit").hasClass("inactive"))
+    {
+      $("#loadingScreen").css("z-index","2").css('opacity', 0).css("display","flex").animate({opacity: 1},{queue:false, duration:200})
+      $("#loader").css('opacity', 0).css("z-index","1").show().animate({opacity: 1},{queue:false, duration:300})
+      $("#darkness2").css('opacity', 0).css("z-index","1").show().animate({opacity: 0.5},{queue:false, duration:300})
+      $("#success-acc-and-sum").children(".account").html($("#acc-selected").html())
+      $("#success-acc-and-sum").children(".sum").html("&minus;"+$("#sum").val().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g,"$1&thinsp;")+"&thinsp;₽")
+      setTimeout(function(){
+        $("#loader").fadeOut(300)
+        $("#darkness2").css("z-index","-2").css("display","none")
+        $("#darkness").css("z-index","1").css("opacity","0.5").show()
+        $("#success").delay(300).css('opacity', 0).show().animate({opacity: 1},{queue:false, duration:300})
+        $("#success-acc-and-sum").delay(100).slideDown(100)
+        $("#success-therest").delay(700).slideDown(300)
+        $("#loadingScreen").click(function() {closeOverlays()});
+        $("#success").click(function(e) {e.stopPropagation();return false})
+      },5000)
+    }
+    else return false;
+  }
+</script>
+<script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter45432387 = new Ya.Metrika({ id:45432387, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/45432387" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</body>
+</html>

@@ -1,0 +1,531 @@
+$sf-text: "SFUIText", sans-serif;
+$sf-display: "SFUIDisplay", sans-serif;
+
+$font-12: 12px/16px "SFUIText", sans-serif;
+
+$font-16: 16px/20px "SFUIText", sans-serif;
+$font-16-ls: -0.02em;
+
+$font-20: 20px "SFUIDisplay", sans-serif;
+$font-20-ls: 0.019em;
+
+$font-24: 24px/32px "SFUIDisplay", sans-serif;
+$font-24-ls: 0.015em;
+
+$font-36: 36px "SFUIDisplay", sans-serif;
+$font-36-ls: 0.011em;
+
+$black-02: rgba(0,0,0,0.02);
+
+$black-90: rgba(0,0,0,0.9);
+$white-90: rgba(255,255,255,0.9);
+
+$black-30: rgba(0,0,0,0.3);
+$black-50: rgba(0,0,0,0.5);
+$black-60: rgba(0,0,0,0.6);
+
+$red: #F03226;
+
+$transition: all 0.2s ease-in-out;
+
+
+@import "SFUI";
+
+body{
+  background-color: #222;
+  color: $black-90;
+  padding: 0;
+  margin: 0;
+  font: $font-16;
+  letter-spacing: $font-16-ls;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+}
+
+html {
+  height:100%
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.iphone-width {
+    width: 375px;
+    margin: 0 auto;
+}
+
+main {
+  background-color: #fff;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 17px;
+  padding-bottom: 48px
+}
+
+menu {
+  height: 79px;
+  margin:0;
+  background: linear-gradient(to right, #1A2F4C, #285277);
+  color: $white-90;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 19px;
+}
+
+menu .align-right {
+  padding-top: 7px
+}
+
+menu .align-right img {
+  margin-right: 4px;
+  position: relative;
+  bottom: -2px
+}
+
+menu .align-right span {
+  border-bottom: 1px solid rgba(255,255,255,0.2)
+}
+
+menu a {
+  color: $white-90;
+  text-decoration: none;
+}
+
+.grid {width: auto;}
+[class*='col-'] {float: left;}
+.grid:after {content: "";display: table;clear: both;}
+.align-right {text-align: right}
+.col-1-2 {width: 50%}
+
+h1 {
+  font: $font-24;
+  font-weight: bold;
+  letter-spacing: $font-24-ls;
+  margin: 0
+}
+
+input, .dropdownWrap .title, .shell span,
+label.emptyField, a.submit
+{
+  font: $font-20;
+  letter-spacing: $font-20-ls;
+  color: $black-90;
+}
+
+
+input {
+  width: 100%;
+  height: 80px!important;
+  outline: 0;
+  background-color: rgba(0,0,0,0.02);
+  border: 2px solid rgba(0,0,0,0);
+  box-sizing: border-box;
+  border-radius:5px;
+  margin-top: 19px;
+  -webkit-appearance: none;
+  transition: $transition;
+  padding-bottom: 13px;
+  padding-left: 16px;
+  transition: $transition;
+}
+
+#tel {padding-left: 43px}
+
+input:focus {
+  background-color: #fff;
+  border-color: rgba(11, 21, 34, 0.4);
+}
+
+.inputField {
+  margin-bottom: 1px
+}
+
+.telField .shell span::before {
+  content: "+7 ";
+  padding-left: 13px;
+  color: rgba(0,0,0,0.9);
+  position: relative;
+}
+
+.shell {
+    display: inline-block;
+    width:100%;
+    position: relative;
+    line-height: 1; }
+.telField .shell span {left:3px}
+.shell span {
+      position: absolute;
+      left: 19px;
+      top: 38px;
+      color: rgba(0,0,0,0.4);
+      pointer-events: none;
+      z-index: 0; }
+.shell span i {
+        font-style: normal;
+        visibility: hidden; }
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+  .shell span {
+    top:39px!important
+  }
+}
+
+.inputField {position:relative}
+
+label {
+  font: $font-12;
+  color:$black-50;
+  position: absolute;
+  bottom:16px;
+  left:16px;
+  transition: $transition;
+}
+
+label.selected {color: $black-90}
+
+label.emptyField {
+  color: $black-50;
+  bottom: 27px;
+  cursor: text
+}
+
+.error {color: $red!important;border-color:rgba($red, 0.3)!important}
+.error-border{border-color:rgba($red, 0.3)!important}
+
+.dropdownWrap {
+    position: relative;
+}
+
+.dropdown {
+  width: 100%;
+  height: 80px!important;
+  border-radius: 5px;
+  background-color: $black-02;
+  padding-left: 17px;
+  margin-top: 20px;
+  padding-top:19px;
+  position: relative;
+  cursor:pointer
+}
+
+.dropdownWrap .lable {
+  font: $font-12;
+  color: $black-50;
+  margin-top: -1.5px;
+}
+
+.dropdown .ctl {
+  position: absolute;
+  left: 307px;
+  top: 35px
+}
+
+.dropdownSlider {
+  display: none;
+}
+
+
+.dropdownSlider {
+  position: absolute;
+  list-style-type: none;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  background-color: white;
+  border-radius: 5px;
+  width:100%;
+  box-shadow: 0px 1px 4px -1px $black-02;
+  z-index: 2
+}
+
+.dropdownSlider li {
+  padding-top: 19px;
+  padding-left: 17px;
+  padding-bottom: 20px
+}
+
+.dropdownSlider li:hover {
+  background-color: $black-02;
+  cursor: pointer;
+}
+
+a.submit {
+  margin-top: 20px;
+  border-radius: 5px;
+  display: block;
+  color: $white-90;
+  background-color: $red;
+  text-decoration: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+a.inactive {
+  color:#A5A5A5;
+  background-color: #ebebeb;
+  cursor: default;
+}
+
+.info {
+  width: 100%;
+  font:$font-12;
+  text-align: center;
+  color: $black-50;
+  margin-top: 11px
+}
+
+footer {
+  font: $font-12;
+  text-align: center;
+  color: $black-30;
+  margin-top: 60px;
+}
+
+footer a {
+  color: $black-30
+}
+
+.hidden {
+  display: none
+}
+
+.accnum {
+  font: $font-12;
+  color: $black-30;
+  margin-left: 8px
+}
+
+.darkness {
+  background-color:#000;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+
+}
+
+.darkness, #loadingScreen {
+  top:0;
+  left:0;
+  right: 0;
+  bottom:0;
+  display: none;
+}
+
+#loadingScreen {
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+}
+
+#success {
+  display: none;
+  background-color: white;
+  width:343px;
+  border-radius: 5px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 20px;
+  z-index: 2
+}
+
+#success .chkmrk {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#success .account {
+  font: $font-16;
+  letter-spacing: $font-16-ls;
+  color: $black-60;
+  margin-top: 20px
+}
+
+#success .sum {
+  font: $font-36;
+  letter-spacing: $font-36-ls;
+  margin-top: 2px;
+}
+
+#success-therest {
+  margin-top: 24px;
+  display: block;
+}
+
+#success-therest .actions {
+  width: 100%;
+  height: 64px;
+}
+
+#success-acc-and-sum, #success-therest {
+  display: none;
+}
+
+#success-therest .actions a {
+  color:$black-90;
+  text-decoration: none
+}
+
+#success-therest .action {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+#success-therest .action span {
+  display: block;
+  margin-top: 7px;
+}
+
+#success a.close {
+  margin-top: 20px;
+  border-radius: 5px;
+  display: block;
+  color: $red;
+  border: 1px solid $red;
+  font: $font-20;
+  letter-spacing: $font-20-ls;
+  text-decoration: none;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+@import "bourbon/bourbon";
+
+$color--green: #1DBA30;
+$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: $color--green;
+  fill: none;
+  animation: stroke .6s $curve forwards;
+}
+
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 0 auto;
+  box-shadow: inset 0px 0px 0px $color--green;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke .3s $curve .8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px $color--green;
+  }
+}
+
+
+
+
+$animationLength: 1.5s;
+$animationRadius: 16px;
+$dotSize: 8px;
+
+.loader {
+    display: none;
+    position: relative;
+    width: $animationRadius * 3 + $dotSize;
+    height: $dotSize;
+    margin: $animationRadius auto;
+}
+
+.dot {
+    display: inline-block;
+    width: $dotSize;
+    height: $dotSize;
+    border-radius: $dotSize * 0.6;
+    background: #fff;
+    position: absolute;
+}
+
+.dot_1 {
+    animation: animateDot1 $animationLength linear infinite;
+    left: $animationRadius;
+    background: $red;
+}
+
+.dot_2 {
+    animation: animateDot2 $animationLength linear infinite;
+    animation-delay: $animationLength / 3;
+    left: $animationRadius * 2;
+}
+
+.dot_3 {
+    animation: animateDot3 $animationLength linear infinite;
+    left: $animationRadius;
+}
+
+.dot_4 {
+    animation: animateDot4 $animationLength linear infinite;
+    animation-delay: $animationLength / 3;
+    left: $animationRadius * 2;
+}
+
+@keyframes animateDot1 {
+    0%{ transform: rotate(0deg) translateX(-$animationRadius); }
+    25% { transform: rotate(180deg) translateX(-$animationRadius); }
+    75% { transform: rotate(180deg) translateX(-$animationRadius); }
+    100% { transform: rotate(360deg) translateX(-$animationRadius); }
+}
+
+@keyframes animateDot2 {
+    0%{ transform: rotate(-0deg) translateX(-$animationRadius); }
+    25% { transform: rotate(-180deg) translateX(-$animationRadius); }
+    75% { transform: rotate(-180deg) translateX(-$animationRadius); }
+    100% { transform: rotate(-360deg) translateX(-$animationRadius); }
+}
+
+@keyframes animateDot3 {
+    0%{ transform: rotate(0deg) translateX($animationRadius); }
+    25% { transform: rotate(180deg) translateX($animationRadius); }
+    75% { transform: rotate(180deg) translateX($animationRadius); }
+    100% { transform: rotate(360deg) translateX($animationRadius); }
+}
+
+@keyframes animateDot4 {
+    0%{ transform: rotate(-0deg) translateX($animationRadius); }
+    25% { transform: rotate(-180deg) translateX($animationRadius); }
+    75% { transform: rotate(-180deg) translateX($animationRadius); }
+    100% { transform: rotate(-360deg) translateX($animationRadius); }
+}

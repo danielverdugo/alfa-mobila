@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="10px" viewBox="0 0 15 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title></title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.6">
+        <g id="1.-Начальное-состояние" transform="translate(-325.000000, -414.000000)" stroke="#F7F7F7" stroke-width="0.5" fill="#000000">
+            <g id="UI/inputField/inputAccount" transform="translate(16.000000, 380.000000)">
+                <path d="M316.741802,40.1956065 L322.028559,35.1215352 C322.190606,34.9594883 322.352651,34.9594883 322.514698,35.1215352 L323.456591,36.033045 C323.618638,36.195092 323.618638,36.3571366 323.456591,36.5191836 L316.984872,42.7174502 C316.924104,42.7782179 316.843082,42.8086012 316.741802,42.8086012 C316.640523,42.8086012 316.559501,42.7782179 316.498733,42.7174502 L310.027014,36.5191836 C309.864967,36.3571366 309.864967,36.195092 310.027014,36.033045 L310.968907,35.1215352 C311.130954,34.9594883 311.292999,34.9594883 311.455046,35.1215352 L316.741802,40.1956065 Z" id=""></path>
+            </g>
+        </g>
+    </g>
+</svg>
