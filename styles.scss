@@ -3,7 +3,7 @@ $bg-color: #FFFCF7;
 $black70: rgba(0,0,0,.7);
 $black90: rgba(0,0,0,.9);
 $red: #DE433C;
-$link-color: #394299;
+$link-color: #335494;
 $red-shadow: darken(saturate($red, 20),22);
 $spacing: 104px;
 $transition: all .2s ease-in-out;
@@ -26,7 +26,7 @@ body {
   box-sizing: border-box;
 }
 
-a {text-decoration: none;color: $link-color;transition:$transition}
+a,a:visited {text-decoration: none;color: $link-color;transition:$transition}
 a span {border-bottom: 1px solid rgba(#394299,.1)}
 a:hover {color:$red}
 a:hover span {border-color: rgba($red,.1)}
@@ -96,7 +96,7 @@ overflow:hidden;
   padding-top:240px;
 }
 
-.button{
+.button,.button:visited{
   display: inline-block;
   width: 320px;
   height: 69px;
@@ -156,6 +156,9 @@ overflow:hidden;
 
 @media screen and (max-width: 568px) {
   .second {
+    margin-top: 104px
+  }
+  .second-small {
     margin-top: 48px
   }
   #MSvideoContainer {
