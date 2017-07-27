@@ -36,6 +36,7 @@ main {
   background-image: url(icons.png);
   background-repeat: no-repeat;
   background-size: cover;
+  margin-left: auto;
 }
 
 h1 {
@@ -72,11 +73,16 @@ text-align:center;
 overflow:hidden;
 }
 
+.prototypeText {
+  width:55%;
+  padding-top:240px;
+}
+
 .button{
   display: inline-block;
-  width: 316px;
+  width: 320px;
   height: 69px;
-  margin-top: 57px;
+  margin-top: 41px;
   background-color: $red;
   color: white;
   font-weight: bold;
@@ -110,6 +116,9 @@ overflow:hidden;
   #MSvideoContainer {
     zoom: 0.82
   }
+  .prototypeText {padding-top: 0!important;margin-top: 6px}
+  .button {width: 272px}
+
 }
 
 @media screen and (max-width: 780px) {
@@ -118,7 +127,7 @@ overflow:hidden;
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 670px) {
   #MSvideoContainer {
     zoom: 0.55
   }
@@ -132,5 +141,7 @@ overflow:hidden;
     zoom: 0.85
   }
 }
+
+.gutter {padding-right: 48px}
 
 nobr {white-space: nowrap;}
