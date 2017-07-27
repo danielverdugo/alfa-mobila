@@ -14,3 +14,6 @@ defaults:
       layout: "default"
       permalink: /:path/:basename/
       lang: "ru"
+
+sass:
+  style: compressed
