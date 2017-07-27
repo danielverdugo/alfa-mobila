@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
+  <script src="scrollreveal.js"></script>
 </head>
 <body>
-
-<main class="grid">
-  <div class="unit whole hidden only-on-mobiles" style="margin-top:-2px;margin-bottom:48px"><div class="logo"></div></div>
+<main class="grid" style="visibility:hidden">
+  <div class="unit whole hidden only-on-mobiles" style="margin-top:-2px;margin-bottom:48px"><div class="logo" style="margin-left:0!important"></div></div>
   <div class="unit three-fourths"><h1>Тестовое задание<br>дизайнера интерфейсов<br>для&nbsp;<span>«Альфа-Лаборатории»</span></h1></div>
   <div class="unit one-fourth align-right hide-on-mobiles" style="padding-top:5px"><a href="//behance.net/d-v-n" target="_blank"><div class="logo"></div></a></div>
   <div class="space unit whole"></div>
@@ -18,8 +18,8 @@
     <h2>Задача</h2>
     Создать прототип интерфейса оплаты счета мобильного телефона для&nbsp;Альфа-Банка и&nbsp;показать пользовательское взаимодействие. Для&nbsp;простоты и&nbsp;скорости ограничиться мобильной <nobr>веб-версией</nobr>.
   </div>
-  <div class="unit one-third">
-
+  <div class="unit one-third second">
+    <a href="letter-big.jpg" target="_blank" class="letter-link"><img src="letter.png" width="122"><span>Письмо<br>с&nbsp;заданием</span></a>
   </div>
   <div class="space unit whole"></div>
   <div class="unit" style="width:45%">
@@ -28,9 +28,15 @@
   </div>
   <div class="unit prototypeText gutter" style="width:55%">
     <h2>Прототип</h2>
-    Для решения задачи сделан HTML-прототип. В&nbsp;отличие от&nbsp;статичных картинок, прототип наглядно показывает поведение элементов при взаимодействии (анимации, переходы, подсветка ошибок и&nbsp;т.д.), позволяет тестировать интерфейс &laquo;в&nbsp;поле&raquo; и&nbsp;облегчает работу разработчиков фронт-энда.<br>
+    Для решения задачи сделан HTML-прототип. В&nbsp;отличие от&nbsp;статичных картинок, прототип наглядно показывает поведение элементов  при взаимодействии (анимации, переходы, подсветка ошибок и&nbsp;т.д.), позволяет тестировать интерфейс &laquo;в&nbsp;поле&raquo; и&nbsp;облегчает работу разработчиков фронт-энда.<br>
     <a href="/ui/" target="_blank" class="button"><span>Открыть прототип в браузере</span></a>
   </div>
 </main>
+<script>
+  window.sr = ScrollReveal({scale: 0.95,duration: 900});
+  sr.reveal("main");
+  (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter45432387 = new Ya.Metrika({ id:45432387, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/45432387" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </body>
 </html>
