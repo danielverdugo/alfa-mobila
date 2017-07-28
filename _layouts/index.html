@@ -44,10 +44,10 @@ layout: compress
     HTML, CSS (SASS), JavaScript, jQuery, Git
   </div>
   <div class="unit half second">
-    <h2>Исходный код на&nbsp;ГитХабе</h2><br>
-    &mdash;&nbsp;<a href="//github.com/danielverdugo/alfa-test/tree/master/ui" target="_blank"><span>Прототип (HTML, CSS&thinsp;/&thinsp;SASS, JavaScript)</span></a><br>
+    <h2>Исходный код</h2><br>
     &mdash;&nbsp;<a href="//github.com/danielverdugo/alfa-test/blob/master/Sketch/alfa-test.sketch?raw=true" target="_blank"><span>Исходный Sketch-макет</span></a><br>
-    &mdash;&nbsp;<a href="//github.com/danielverdugo/alfa-test" target="_blank"><span>Код этой страницы</span></a>
+    &mdash;&nbsp;<a href="//github.com/danielverdugo/alfa-test/tree/master/ui" target="_blank"><span>Прототип (HTML, CSS&thinsp;/&thinsp;SASS, JavaScript)</span></a><br>
+    &mdash;&nbsp;<a href="//github.com/danielverdugo/alfa-test" target="_blank"><span>Код этой страницы (Jekyll)</span></a>
     <a href=""></a>
   </div>
   <div class="unit whole space"></div>
@@ -60,10 +60,16 @@ layout: compress
 </div></div>
   <div class="unit whole space"></div>
 </main>
-<script src="js/likely.js" type="text/javascript"></script>
 <script>
   window.sr = ScrollReveal({viewFactor:0.1,scale: 0.95,duration: 900});
   sr.reveal("main");
+
+  var append=function(a,t,e,n,d){var r=document.createElement(t);e&&r.setAttribute(e[0],e[1]),n&&r.setAttribute(n[0],n[1]),d&&r.setAttribute(d[0],d[1]),document.getElementsByTagName(a)[0].appendChild(r)};
+
+  document.addEventListener("DOMContentLoaded",function(){
+			append("head","script",["src","js/likely.js"]);
+	});
+
   (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter45432387 = new Ya.Metrika({ id:45432387, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/45432387" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
