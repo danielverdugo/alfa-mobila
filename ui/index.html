@@ -21,7 +21,7 @@
 
     <div class="dropdownWrap hidden" id="operator">
     <div class="dropdown" onclick="dropMenu('#operator-menu')">
-      <div class="title"><img src="i/logoYota.svg" height="16">Йота (мобильная связь)</div>
+      <div class="title" id="selected-operator"><img src="i/logoBeeline.svg" height="16">Билайн</div>
       <div class="lable">Оператор</div>
       <img src="i/drop.svg" class="ctl">
     </div>
@@ -30,19 +30,19 @@
     </style>
     <ul id="operator-menu" class="dropdownSlider">
       <li>
-        <div class="title"><img src="i/logoBeeline.svg" height="16">Билайн</div>
+        <div class="title" id="operator-beeline"><img src="i/logoBeeline.svg" height="16">Билайн</div>
       </li>
       <li>
-        <div class="title"><img src="i/logoMTS.svg" height="16">МТС</div>
+        <div class="title" id="operator-mts"><img src="i/logoMTS.svg" height="16">МТС</div>
       </li>
       <li>
-        <div class="title"><img src="i/logoMegaFon.svg" height="16">МегаФон</div>
+        <div class="title" id="operator-megafon"><img src="i/logoMegaFon.svg" height="16">МегаФон</div>
       </li>
       <li>
-        <div class="title"><img src="i/logoTele2.svg" height="8">Теле2</div>
+        <div class="title" id="operator-tele2"><img src="i/logoTele2.svg" height="8">Теле2</div>
       </li>
       <li>
-        <div class="title"><img src="i/logoYota.svg" height="16">Йота (мобильная связь)</div>
+        <div class="title" id="operator-yota"><img src="i/logoYota.svg" height="16">Йота (мобильная связь)</div>
       </li>
     </ul>
     </div>
@@ -123,7 +123,14 @@
 <script>
 window.onload = function(){
   var dNum;
+  var opCode;
   var formReady = false;
+  var operator
+  var mtsCodes = [902, 904, 908, 910, 911, 912, 913, 914, 915, 916, 917, 918, 919, 950, 978, 980, 981, 982, 983, 984, 985, 986, 987, 988, 989]
+  var megaCodes = [920, 921, 922, 923, 924, 925, 926, 927, 928, 929, 930, 931, 932, 933, 934, 936, 937, 938, 939]
+  var beeCodes = [900, 902, 903, 904, 905, 906, 908, 909, 950, 951, 953, 960, 961, 962, 963, 964, 965, 966, 967, 968, 969]
+  var tele2Codes = [958, 977, 991, 992, 993, 994, 995, 996]
+  var yotaCodes = [999]
 
   if (!(navigator.platform.indexOf("iPhone") != -1)) {$("#tel").focus()}
 
@@ -156,7 +163,19 @@ window.onload = function(){
     $("label[for='"+$(this).attr("id")+"']").removeClass("error")
     $("#sum").val($("#sum").val().replace(/^[0]/,''))
 
-    if ($("#tel").val().length >= 3) {
+    if ($("#tel").val().length < 6) {
+      opCode = parseInt($("#tel").val().substr(0, 3))
+      operator = false;
+      if ($.inArray(opCode,yotaCodes)!=-1) {operator="#operator-yota"}
+      else if ($.inArray(opCode,mtsCodes)!=-1) {operator="#operator-mts"}
+      else if ($.inArray(opCode,megaCodes)!=-1) {operator="#operator-megafon"}
+      else if ($.inArray(opCode,beeCodes)!=-1) {operator="#operator-beeline"}
+      else if ($.inArray(opCode,tele2Codes)!=-1) {operator="#operator-tele2"}
+      else {$("#selected-operator").html("Выберите оператора")}
+      if (operator) {$("#selected-operator").html($(operator).html())}
+    }
+
+    if ($("#tel").val().length >= 6) {
       $("#operator").slideDown(200)
     } else {
       $("#operator").slideUp(200)
